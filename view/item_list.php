@@ -67,7 +67,7 @@
                 <option value="">Please select</option>
                 <?php foreach ($categories as $category) : ?>
                 <option value="<?= $category['categoryID']; ?>">
-                    <?= $item['categoryID']; ?>
+                    <?= $category['categoryName']; ?>
                 </option>
                 <?php endforeach; ?>
 
