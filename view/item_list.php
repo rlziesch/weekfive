@@ -11,11 +11,11 @@
             <select name="item_id" required>
             
                 <option value="0">View All</option>
-                <?php foreach ($items as $item) : ?>
-                <?php if ($item_id == $item['categoryID']) { ?>
-                    <option value="<?= $item['categoryID'] ?>" selected>
+                <?php foreach ($action as $action) : ?>
+                <?php if ($item_id == $category['categoryID']) { ?>
+                    <option value="<?= $item['Description'] ?>" selected>
                 <?php } else { ?>
-                    <option value="<?= $item['categoryID'] ?>">
+                    <option value="<?= $item['Description'] ?>">
                 <?php } ?>
                         <?= $item['Title'] ?>
                     </option>

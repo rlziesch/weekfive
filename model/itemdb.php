@@ -49,6 +49,18 @@
         return $todoitem;
     }
 
+    function list_items ($action) {
+        global $db;
+        $query = 'SELECT * FROM todoitems
+            WHERE categoryID = :categoryID';
+        $statement = $db->prepare($query);
+        $statement->bindValue(':category_id', $category_id);
+        $statement->execute();
+        $action = $statement->fetchAll();
+        $statement->closeCursor();
+        return $action;
+    }
+
     function delete_item ($item_id) {
         global $db;
         $query = 'DELETE FROM todoitems
@@ -59,23 +71,23 @@
         $statement->closeCursor();
     }
 
-    function add_item ($category_id, $description, $title) {
+    function add_item ($category_id, $title, $description) {
         global $db;
-        $query = 'INSERT INTO todoitems (categoryID, Description, Title) VALUES
-                (:category_id, :description, :title)';
+        $query = 'INSERT INTO todoitems (categoryID, Title, Description) VALUES
+                (:category_id, :title, :description)';
         $statement = $db->prepare($query);
         $statement->bindValue(':category_id', $category_id);
-        $statement->bindValue(':description', $description);
         $statement->bindValue(':title', $title);
+        $statement->bindValue(':description', $description);
         $statement->execute();
         $statement->closeCursor();
     }
 
     function add_category($category_name) {
         global $db; //connects to database
-        $query = 'INSERT INTO categories (categoryName) VALUES (:category_Name)';
+        $query = 'INSERT INTO categories (categoryName) VALUES (:categoryName)';
         $statement = $db->prepare($query);
-        $statement->bindValue(':category_Name', $category_name);
+        $statement->bindValue(':categoryName', $category_name);
         $statement->execute();
         $statement->closeCursor();
     }
